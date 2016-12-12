@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,8 @@ public class SearchView extends LinearLayout implements View.OnClickListener{
     private EditText editText;
 
     private ImageView clearSearchText;
+
+    private Button searchBtn;
 
     private Context mContext;
 
@@ -47,6 +50,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener{
     private void initView() {
         editText = (EditText) findViewById(R.id.search_input);
         clearSearchText = (ImageView) findViewById(R.id.search_delete);
+        searchBtn = (Button) findViewById(R.id.search_btn);
         searchTips = (RecyclerView) findViewById(R.id.search_tips);
 
         searchTips.setLayoutManager(new LinearLayoutManager(mContext));
@@ -84,6 +88,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener{
 
             }
         });
+
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -92,6 +97,14 @@ public class SearchView extends LinearLayout implements View.OnClickListener{
                     nofityStartSearching();
                 }
                 return true;
+            }
+        });
+
+        searchBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchTips.setVisibility(GONE);
+                nofityStartSearching();
             }
         });
     }
@@ -110,6 +123,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.search_input:
                 searchTips.setVisibility(VISIBLE);
+                mListener.hideResult();
                 break;
             case R.id.search_delete:
                 editText.setText("");
@@ -132,5 +146,7 @@ public class SearchView extends LinearLayout implements View.OnClickListener{
         void onRefreshSearchTip(String text);
 
         void onSearch(String text);
+
+        void hideResult();
     }
 }

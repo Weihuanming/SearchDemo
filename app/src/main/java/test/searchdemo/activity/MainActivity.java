@@ -119,4 +119,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.Search
             searchResultAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void hideResult() {
+        searchResult.setVisibility(View.GONE);
+    }
 }

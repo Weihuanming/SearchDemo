@@ -16,6 +16,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/search_edittext_shape"
             android:drawableLeft="@drawable/search_icon"
+            android:layout_toLeftOf="@+id/search_btn"
             android:hint="请输入关键字"
             android:imeOptions="actionSearch"
             android:inputType="text"/>
@@ -26,9 +27,18 @@
             android:layout_height="wrap_content"
             android:src="@drawable/iv_delete_bg"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@+id/search_btn"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/search_btn"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="搜索"
+            android:layout_marginRight="10dp"/>
 
     </RelativeLayout>
 
